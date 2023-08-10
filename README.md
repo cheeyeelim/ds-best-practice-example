@@ -54,7 +54,7 @@ Please refer to the [example notebook](./notebook/ds-best-practice-example.ipynb
 ### (1) Run via command line
 
 ```bash
-poetry run python cli.py
+poetry run ezml
 ```
 
 ### (2) Run via Python
@@ -78,6 +78,29 @@ X_train, X_test, y_train, y_test = prepare_data(cfg)
 model = train_model(cfg, X_train, y_train)
 diagnose_model(X_test, y_test, model)
 ```
+
+## How to develop this package further?
+
+1. Update codes as needed.
+   1. Usually I create and test codes in Jupyter notebook (under `notebook` folder) before manually adapting over to standard Python scripts.
+2. Test that codes are working as intended.
+   1. Test locally if constrained by cloud resources by running `poetry run pytest` or `poetry run tox`
+   2. If not test in cloud by pushing to Github as this repo has Github Workflows defined (in `.github/workflows`)
+3. Test documentation can be generated correctly.
+   1. `poetry run mkdocs build`
+   2. `poetry run mkdocs serve`
+4. Run `pre-commit` by committing codes.
+   1. `git add .`
+   2. `git commit -m "a message"`
+   3. Resolve any errors from `pre-commit` manually.
+5. Rerun git add and commit to commit codes.
+   1. Once happy with everything, `git push` the codes to cloud repo.
+6. Github Actions will be automatically triggered for testing and staging.
+   1. Wait for Github Actions to complete, then check for a published package at https://test.pypi.org/project/ds-best-practice-example/
+7. Once all are done, trigger `release` build by tagging a commit with `v*` version number.
+   1. A documentation will be automatically generated at `https://cheeyeelim.github.io/ds-best-practice-example`
+   2. The package will be built and published to `PyPI`.
+
 
 ## How to create this project from scratch?
 

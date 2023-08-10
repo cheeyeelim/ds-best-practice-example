@@ -1,5 +1,4 @@
 """Main module."""
-import hydra
 from omegaconf import DictConfig
 
 from ezml.data import prepare_data
@@ -7,7 +6,6 @@ from ezml.diagnostic import diagnose_model
 from ezml.model import train_model
 
 
-@hydra.main(version_base=None, config_path="../input/conf", config_name="config")
 def linear_regression_pipeline(cfg: DictConfig) -> None:
     """Pipeline to create a linear regression model based on input data.
 
