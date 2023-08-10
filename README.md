@@ -27,7 +27,7 @@ The additional tools are :
 - Mkdocs (+ extensions) - for documentation generation
 - Tox - for testing under multiple environments
 - Codecov - for code coverage report
-- GitHub actions - for CI/CD
+- GitHub Actions - for CI/CD
 
 
 * Documentation: <https://cheeyeelim.github.io/ds-best-practice-example>
