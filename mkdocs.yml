@@ -56,7 +56,7 @@ plugins:
       lang: en
   - mkdocstrings:
       watch:
-        - ds-best-practice-example
+        - ezml
 extra:
   social:
     - icon: fontawesome/brands/github

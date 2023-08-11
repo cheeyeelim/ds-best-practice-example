@@ -1,4 +1,4 @@
-"""Entrypoint for ds-best-practice-example."""
+"""Entrypoint for ezml."""
 import logging
 import time
 

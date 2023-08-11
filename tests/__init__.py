@@ -1,1 +1,1 @@
-"""Unit test package for ds-best-practice-example."""
+"""Unit test package for ezml."""

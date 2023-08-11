@@ -1,1 +1,1 @@
-::: ds-best-practice-example
+::: ezml

@@ -1,4 +1,4 @@
-"""Main module."""
+"""Pipeline definitions."""
 import logging
 import time
 

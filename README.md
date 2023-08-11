@@ -16,19 +16,24 @@ This example package will fit a linear regression on your input data. It comes w
 
 Note that this example comes with many tools/components to help your development, but do enable/disable them based on your needs.
 
-The recommend minimum tools I usually go for in most of my projects are :
-- [Poetry](https://python-poetry.org/) - for Python package management
-- [Pre-commit](https://pre-commit.com/) - for formating and linting
-- [hydra](https://hydra.cc/) - for package configurations
-- [logging](https://docs.python.org/3/library/logging.html) - for logging runtime information
-- [Pytest](https://docs.pytest.org/en/) - for unit testing
+The recommend minimum tools I usually go for in most of my projects are
 
-The additional tools are :
-- Mkdocs (+ extensions) - for documentation generation
-- Tox - for testing under multiple environments
-- Codecov - for code coverage report
-- GitHub Actions - for CI/CD
+* [Poetry](https://python-poetry.org/) - for Python package management
+* [Pre-commit](https://pre-commit.com/) - for formating and linting
+* [hydra](https://hydra.cc/) - for package configurations
+* [logging](https://docs.python.org/3/library/logging.html) - for logging runtime information
+* [Pytest](https://docs.pytest.org/en/) - for unit testing
 
+The additional tools are
+
+* [Mkdocs](https://www.mkdocs.org/) - for documentation generation
+* [Mkdocstrings](https://mkdocstrings.github.io/) - for automatic API generation
+* [Tox](https://tox.wiki/en/) - for testing under multiple environments
+* [Codecov](https://about.codecov.io/) - for code coverage report
+* [GitHub Actions](https://github.com/features/actions) - for CI/CD
+* [GitHub Pages](https://pages.github.com) - for documentation hosting
+
+## Related links
 
 * Documentation: <https://cheeyeelim.github.io/ds-best-practice-example>
 * GitHub: <https://github.com/cheeyeelim/ds-best-practice-example>
@@ -83,24 +88,32 @@ diagnose_model(X_test, y_test, model)
 
 1. Update codes as needed.
    1. Usually I create and test codes in Jupyter notebook (under `notebook` folder) before manually adapting over to standard Python scripts.
-2. Test that codes are working as intended.
-   1. Test locally if constrained by cloud resources by running `poetry run pytest` or `poetry run tox`
-   2. If not test in cloud by pushing to Github as this repo has Github Workflows defined (in `.github/workflows`)
-3. Test documentation can be generated correctly.
-   1. `poetry run mkdocs build`
-   2. `poetry run mkdocs serve`
-4. Run `pre-commit` by committing codes.
+2. (Test locally) Test that codes are working as intended.
+   1. Test locally (all in one go)
+      1. `poetry run tox`
+      2. Internally `tox` will run unit testing, document generation and build tests.
+   2. Test locally (one by one)
+      1. `poetry run pytest` for unit testing
+      2. `poetry run mike deploy vtest -m "test doc build" --ignore`
+      3. `poetry run mike delete vtest -m "remove doc build" --ignore`
+      4. `poetry run mkdocs serve` to see docs locally
+      5. `poetry build`
+      6. `poetry run twine check dist/*` to test builds
+    3. Test on cloud
+       1. No need to do anything
+       2. Follow later steps to push the codes to GitHub to trigger tests, as this repo has GitHub Workflows defined (in `.github/workflows`)
+3. Run `pre-commit` by committing codes.
    1. `git add .`
    2. `git commit -m "a message"`
    3. Resolve any errors from `pre-commit` manually.
-5. Rerun git add and commit to commit codes.
+4. Rerun git add and commit to commit codes.
    1. Once happy with everything, `git push` the codes to cloud repo.
-6. Github Actions will be automatically triggered for testing and staging.
-   1. Wait for Github Actions to complete, then check for a published package at https://test.pypi.org/project/ds-best-practice-example/
-7. Once all are done, trigger `release` build by tagging a commit with `v*` version number.
+5. GitHub Actions will be automatically triggered for testing and staging.
+   1. Wait for GitHub Actions to complete, then check for a published package at https://test.pypi.org/project/ds-best-practice-example/
+6. Once all are done, trigger `release` build by tagging a commit with `v*` version number.
    1. A documentation will be automatically generated at `https://cheeyeelim.github.io/ds-best-practice-example`
    2. The package will be built and published to `PyPI`.
-
+7. Done!
 
 ## How to create this project from scratch?
 
@@ -119,10 +132,6 @@ pre-commit install
 # Install Python packages
 poetry install -E test -E dev -E doc
 ```
-
-## Features
-
-* TODO
 
 ## Credits
 
