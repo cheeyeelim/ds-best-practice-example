@@ -17,11 +17,11 @@ This example package will fit a linear regression on your input data. It comes w
 Note that this example comes with many tools/components to help your development, but do enable/disable them based on your needs.
 
 The recommend minimum tools I usually go for in most of my projects are :
-- Poetry - for Python package management
-- Pre-commit - for formating and linting
-- hydra - for package configurations
-- logging - for logging runtime information
-- Pytest - for unit testing
+- [Poetry](https://python-poetry.org/) - for Python package management
+- [Pre-commit](https://pre-commit.com/) - for formating and linting
+- [hydra](https://hydra.cc/) - for package configurations
+- [logging](https://docs.python.org/3/library/logging.html) - for logging runtime information
+- [Pytest](https://docs.pytest.org/en/) - for unit testing
 
 The additional tools are :
 - Mkdocs (+ extensions) - for documentation generation

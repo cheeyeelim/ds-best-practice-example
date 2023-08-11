@@ -30,5 +30,5 @@ def diagnose_model(X_test: pd.DataFrame, y_test: pd.DataFrame, model: linear_mod
     y_pred = model.predict(X_test)
 
     # Report model performance
-    logger.info("Mean squared error: %.2f" % mean_squared_error(y_test, y_pred))
-    logger.info("Coefficient of determination: %.2f" % r2_score(y_test, y_pred))
+    logger.info(f"Mean squared error: {mean_squared_error(y_test, y_pred):.3f}")
+    logger.info(f"Coefficient of determination: {r2_score(y_test, y_pred):.3f}")

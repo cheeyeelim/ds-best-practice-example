@@ -10,7 +10,7 @@ from contextlib import contextmanager
 
 
 @contextmanager
-def inside_dir(dirpath: str):
+def inside_dir(dirpath: str) -> None:
     """Execute code from inside the given directory.
 
     Parameters
@@ -30,7 +30,7 @@ def inside_dir(dirpath: str):
         os.chdir(old_path)
 
 
-def execute(command: list[str], dirpath: str, timeout: int = 30, supress_warning: bool = True):
+def execute(command: list[str], dirpath: str, timeout: int = 30, supress_warning: bool = True) -> str:
     """Run command inside given directory and returns output.
 
     If there's stderr, then it may raise exception according to supress_warning.
@@ -49,7 +49,7 @@ def execute(command: list[str], dirpath: str, timeout: int = 30, supress_warning
 
     Returns
     -------
-    out : string
+    out : str
         Output from standard out.
     """
     with inside_dir(dirpath):
@@ -69,7 +69,7 @@ def execute(command: list[str], dirpath: str, timeout: int = 30, supress_warning
 # (B) Tests
 
 
-def test_cli_help():
+def test_cli_help() -> None:
     """Test the command line interface (CLI) help interface."""
     cli_path = "./"
 
@@ -78,11 +78,11 @@ def test_cli_help():
     assert "Use --hydra-help to view Hydra specific help" in cli_out
 
 
-def test_cli_default():
+def test_cli_default() -> None:
     """Test the command line interface (CLI) default run."""
     cli_path = "./"
 
     cli_out = execute(["ezml"], str(cli_path))
-    assert "All data checks passed!" in cli_out
     assert "Mean squared error" in cli_out
     assert "Coefficient of determination" in cli_out
+    assert "Pipeline ended - Linear regression." in cli_out

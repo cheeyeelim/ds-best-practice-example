@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 logger = logging.getLogger(__name__)
 
 
-def prepare_data(cfg: DictConfig) -> tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
+def prepare_data(cfg: DictConfig) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """Read and prepare data for model training.
 
     Parameters
@@ -21,9 +21,9 @@ def prepare_data(cfg: DictConfig) -> tuple[pd.DataFrame, pd.Series, pd.DataFrame
     -------
     X_train : pd.DataFrame
         Data with feature variables for training.
-    X_test : pd.Series
+    X_test : pd.DataFrame
         Data with target variable for testing.
-    y_train : pd.DataFrame
+    y_train : pd.Series
         Data with feature variables for training.
     y_test : pd.Series
         Data with target variable for testing.

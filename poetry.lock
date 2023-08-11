@@ -1908,6 +1908,21 @@ pytest = ">=4.6"
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtualenv"]
 
 [[package]]
+name = "pytest-timeout"
+version = "2.1.0"
+description = "pytest plugin to abort hanging tests"
+category = "main"
+optional = true
+python-versions = ">=3.6"
+files = [
+    {file = "pytest-timeout-2.1.0.tar.gz", hash = "sha256:c07ca07404c612f8abbe22294b23c368e2e5104b521c1790195561f37e1ac3d9"},
+    {file = "pytest_timeout-2.1.0-py3-none-any.whl", hash = "sha256:f6f50101443ce70ad325ceb4473c4255e9d74e3c7cd0ef827309dfa4c0d975c6"},
+]
+
+[package.dependencies]
+pytest = ">=5.0.0"
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -2814,9 +2829,9 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [extras]
 dev = ["tox", "pre-commit", "virtualenv", "pip", "twine", "toml", "bump2version", "ipykernel"]
 doc = ["mkdocs", "mkdocs-material", "mkdocstrings", "mkdocs-autorefs", "mkdocs-include-markdown-plugin", "mkdocs-git-revision-date-plugin", "mike"]
-test = ["pytest", "black", "isort", "mypy", "flake8", "flake8-docstrings", "pytest-cov", "hypothesis"]
+test = ["pytest", "pytest-cov", "pytest-timeout", "black", "isort", "mypy", "flake8", "flake8-docstrings", "hypothesis"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.9"
-content-hash = "45c633939eb11b0b6367fe4512f83871e3f60a07ab7bbac993496c33921ba14e"
+content-hash = "374dce7aabc5d27a15bd4f4b273b67c074138597477a9f155d64b6fd2c4100d3"

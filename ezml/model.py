@@ -9,7 +9,7 @@ from sklearn import linear_model
 logger = logging.getLogger(__name__)
 
 
-def train_model(cfg: DictConfig, X_train: pd.DataFrame, y_train: pd.DataFrame) -> linear_model.LinearRegression:
+def train_model(cfg: DictConfig, X_train: pd.DataFrame, y_train: pd.Series) -> linear_model.LinearRegression:
     """Train a linear regression on data, and save the trained model.
 
     Parameters
@@ -18,8 +18,8 @@ def train_model(cfg: DictConfig, X_train: pd.DataFrame, y_train: pd.DataFrame) -
         Configs read in via Hydra.
     X_train : pd.DataFrame
         Data with feature variables for training.
-    y_train : pd.DataFrame
-        Data with feature variables for training.
+    y_train : pd.Series
+        Data with target variable for training.
 
     Returns
     -------

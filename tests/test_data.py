@@ -4,20 +4,20 @@ Contains tests on synthetic data frame.
 """
 import logging
 
+import hydra
 import hypothesis
 import hypothesis.strategies as st
 import pandas as pd
 import pytest
-from hydra import compose, initialize
 from hypothesis.extra.pandas import column, data_frames
 
 from ezml.data import _check_data, prepare_data
 
 
-def test_prepare_data():
+def test_prepare_data() -> None:
     """Test the prepare_data function, with default data."""
-    with initialize(version_base=None, config_path="../input/conf"):
-        cfg = compose(config_name="config")
+    with hydra.initialize(version_base=None, config_path="../input/conf"):
+        cfg = hydra.compose(config_name="config")
 
         X_train, X_test, y_train, y_test = prepare_data(cfg=cfg)
 
@@ -36,7 +36,7 @@ def test_prepare_data():
     )
 )
 @hypothesis.settings(suppress_health_check=[hypothesis.HealthCheck.function_scoped_fixture])
-def test_check_data_float(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
+def test_check_data_float(df: pd.DataFrame, caplog: pytest.LogCaptureFixture) -> None:
     """Test the _check_data function, with float data.
 
     Hypothesis healthcheck is suppresed as caplog is manually cleared for each run.
@@ -49,6 +49,10 @@ def test_check_data_float(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
         Synthetic dataframe to be tested.
     caplog : pytest.LogCaptureFixture
         Pytest captured logging output.
+
+    Returns
+    -------
+    None
     """
     if not df.empty:
         # Set logging at lowest level to capture everything
@@ -70,7 +74,7 @@ def test_check_data_float(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
     )
 )
 @hypothesis.settings(suppress_health_check=[hypothesis.HealthCheck.function_scoped_fixture])
-def test_check_data_int(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
+def test_check_data_int(df: pd.DataFrame, caplog: pytest.LogCaptureFixture) -> None:
     """Test the _check_data function, with int data.
 
     Hypothesis healthcheck is suppresed as caplog is manually cleared for each run.
@@ -83,6 +87,10 @@ def test_check_data_int(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
         Synthetic dataframe to be tested.
     caplog : pytest.LogCaptureFixture
         Pytest captured logging output.
+
+    Returns
+    -------
+    None
     """
     if not df.empty:
         # Set logging at lowest level to capture everything
@@ -104,7 +112,7 @@ def test_check_data_int(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
     )
 )
 @hypothesis.settings(suppress_health_check=[hypothesis.HealthCheck.function_scoped_fixture])
-def test_check_data_str(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
+def test_check_data_str(df: pd.DataFrame, caplog: pytest.LogCaptureFixture) -> None:
     """Test the _check_data function, with str data.
 
     Hypothesis healthcheck is suppresed as caplog is manually cleared for each run.
@@ -117,6 +125,10 @@ def test_check_data_str(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
         Synthetic dataframe to be tested.
     caplog : pytest.LogCaptureFixture
         Pytest captured logging output.
+
+    Returns
+    -------
+    None
     """
     if not df.empty:
         # Set logging at lowest level to capture everything
@@ -139,7 +151,7 @@ def test_check_data_str(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
 )
 @hypothesis.example(df=pd.DataFrame(columns=["colA", "colB"]))
 @hypothesis.settings(suppress_health_check=[hypothesis.HealthCheck.function_scoped_fixture])
-def test_check_data_empty(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
+def test_check_data_empty(df: pd.DataFrame, caplog: pytest.LogCaptureFixture) -> None:
     """Test the _check_data function, with empty dataframe.
 
     Hypothesis healthcheck is suppresed as caplog is manually cleared for each run.
@@ -150,6 +162,10 @@ def test_check_data_empty(df: pd.DataFrame, caplog: pytest.LogCaptureFixture):
         Synthetic dataframe to be tested.
     caplog : pytest.LogCaptureFixture
         Pytest captured logging output.
+
+    Returns
+    -------
+    None
     """
     if df.empty:
         # Set logging at lowest level to capture everything
