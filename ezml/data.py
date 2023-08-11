@@ -1,5 +1,6 @@
 """Data reading and processing module."""
 import logging
+import warnings
 
 import pandas as pd
 from omegaconf import DictConfig
@@ -61,11 +62,16 @@ def _check_data(data: pd.DataFrame) -> None:
     -------
     None
     """
-    if not all(data.dtypes == float):
-        if any(data.dtypes == object):
-            logger.exception("Data contains string or mixed type. Please handle the data manually.")
-            raise Exception("Data contains string or mixed type. Please handle the data manually.")
-        elif any(data.dtypes == int):
-            logger.warning("Data contains integer. Please check if this is intended.")
+    if not data.empty:
+        if not all(data.dtypes == float):
+            if any(data.dtypes == object):
+                logger.exception("Data contains string or mixed type. Please handle the data manually.")
+                raise Exception("Data contains string or mixed type. Please handle the data manually.")
+            elif any(data.dtypes == int):
+                logger.warning("Data contains integer. Please check if this is intended.")
+                warnings.warn("Data contains integer. Please check if this is intended.")
+        else:
+            logger.info("All data checks passed!")
     else:
-        logger.info("All data checks passed!")
+        logger.exception("Empty dataframe. Please check the data.")
+        raise Exception("Empty dataframe. Please check the data.")
