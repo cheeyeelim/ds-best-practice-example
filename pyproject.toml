@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "ds-best-practice-example"
-version = "0.1.0"
+version = "0.1.1"
 homepage = "https://github.com/cheeyeelim/ds-best-practice-example"
 description = "Showcase best practices for structuring a Python package."
 authors = ["Chee Yee Lim <cheeyee.lim@gmail.com>"]
