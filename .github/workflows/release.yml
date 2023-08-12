@@ -28,12 +28,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Get version from tag
-        id: tag_name
-        run: |
-          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
-        shell: bash
-
       - name: Checkout repo
         uses: actions/checkout@v3
 
@@ -41,8 +35,7 @@ jobs:
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
         with:
-          validation_depth: 10
-          version: ${{ steps.tag_name.outputs.current_version }}
+          validation_level: warn
           path: ./CHANGELOG.md
 
       - name: Setup Python
@@ -64,7 +57,7 @@ jobs:
         run: |
           poetry install -E doc
           git fetch origin gh-pages --depth=1
-          poetry run mike deploy --push --update-aliases ${{ steps.tag_name.outputs.current_version }} latest
+          poetry run mike deploy --push --update-aliases ${{ steps.changelog_reader.outputs.version }} latest
           poetry run mike set-default --push latest
 
       - name: Build wheels and source tarball

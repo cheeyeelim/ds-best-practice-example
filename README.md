@@ -102,18 +102,20 @@ diagnose_model(X_test, y_test, model)
     3. Test on cloud
        1. No need to do anything
        2. Follow later steps to push the codes to GitHub to trigger tests, as this repo has GitHub Workflows defined (in `.github/workflows`)
-3. Run `pre-commit` by committing codes.
+3. Bump the version number up
+   1. E.g. for a patch, `poetry run bump2version patch`
+4. Run `pre-commit` by committing codes.
    1. `git add .`
    2. `git commit -m "a message"`
    3. Resolve any errors from `pre-commit` manually.
-4. Rerun git add and commit to commit codes.
+5. Rerun git add and commit to commit codes.
    1. Once happy with everything, `git push` the codes to cloud repo.
-5. GitHub Actions will be automatically triggered for testing and staging.
+6. GitHub Actions will be automatically triggered for testing and staging.
    1. Wait for GitHub Actions to complete, then check for a published package at https://test.pypi.org/project/ds-best-practice-example/
-6. Once all are done, trigger `release` build by tagging a commit with `v*` version number.
+7. Once all are done, trigger `release` build by tagging a commit with `v*` version number.
    1. A documentation will be automatically generated at `https://cheeyeelim.github.io/ds-best-practice-example`
    2. The package will be built and published to `PyPI`.
-7. Done!
+8. Done!
 
 ## How to create this project from scratch?
 
