@@ -76,6 +76,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body: ${{ steps.changelog_reader.outputs.changes }}
+          tag_name: ${{ steps.changelog_reader.outputs.version }}
           files: dist/*.whl
           draft: false
           prerelease: false
