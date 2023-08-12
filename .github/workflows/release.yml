@@ -30,6 +30,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # fetch all commits/branches. required for mike
 
       - name: Get Changelog entry
         id: changelog_reader
