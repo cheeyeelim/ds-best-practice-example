@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-versions: ["3.9.7", "3.9"]
+        python-versions: ["3.9"]
         os: [ubuntu-20.04]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
